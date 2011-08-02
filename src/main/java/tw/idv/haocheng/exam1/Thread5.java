@@ -17,7 +17,8 @@ public class Thread5 implements Runnable {
 			int number = pool.forThread5();
 			sum += number;
 			if (sum > 200) {
-				System.err.println("Jackpot!");
+				System.err.println("Thread5 sum: " + sum);
+				System.err.println("Thread5: Jackpot!");
 				sum = 0;
 			}
 		}
