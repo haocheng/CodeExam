@@ -19,9 +19,9 @@ public class Utils {
 			throw new NumberFormatException(
 					"Value outside roman numeral range.");
 		}
-		
+
 		// Roman notation will be accumualated here.
-		StringBuilder builder = new StringBuilder();
+		StringBuffer builder = new StringBuffer();
 
 		// Loop from biggest value to smallest, successively subtracting,
 		// from the binary value while adding to the roman representation.
@@ -36,8 +36,8 @@ public class Utils {
 
 	public static Double findMedian(List<Integer> numbers) {
 		Collections.sort(numbers);
-		System.err.println("all numbers: "
-				+ Arrays.toString(numbers.toArray()));
+		System.err
+				.println("all numbers: " + Arrays.toString(numbers.toArray()));
 
 		int size = numbers.size();
 
