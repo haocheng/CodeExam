@@ -1,51 +1,42 @@
 package tw.idv.haocheng.exam1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
 
 public class Thread3 implements Runnable {
 
-	private BlockingQueue<Integer> queue1;
+	private final List<Integer> seq;
 
-	private BlockingQueue<Integer> queue2;
+	private final NumberPool pool;
 
-	private List<Integer> numbers;
-
-	public Thread3(BlockingQueue<Integer> queue1,
-			BlockingQueue<Integer> queue2, List<Integer> numbers) {
-		this.queue1 = queue1;
-		this.queue2 = queue2;
-		this.numbers = numbers;
+	public Thread3(NumberPool pool) {
+		this.pool = pool;
+		this.seq = new ArrayList<Integer>();
 	}
 
 	@Override
 	public void run() {
 		while (true) {
-			try {
-				numbers.add(queue1.take());
-				numbers.add(queue2.take());
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-			Integer median = findMedian(numbers);
+			int sum = pool.forThread3();
+			seq.add(sum);
+			Double median = findMedian(seq);
 			System.err.println("Thread3 median: " + median);
 		}
 	}
 
-	private Integer findMedian(List<Integer> numbers) {
+	private Double findMedian(List<Integer> numbers) {
 		Collections.sort(numbers);
-		System.err.println("numbers: " + Arrays.toString(numbers.toArray()));
+		System.err.println("Thread3 numbers: " + Arrays.toString(numbers.toArray()));
 
 		int size = numbers.size();
 
 		if (size % 2 == 1) {
-			return numbers.get((int) Math.floor(size / 2));
+			return Double.valueOf(numbers.get((int) Math.floor(size / 2)));
 		} else {
-			Integer lowerMiddle = numbers.get(size / 2);
-			Integer upperMiddle = numbers.get(size / 2 - 1);
+			Double lowerMiddle = Double.valueOf(numbers.get(size / 2));
+			Double upperMiddle = Double.valueOf(numbers.get(size / 2 - 1));
 			return (lowerMiddle + upperMiddle) / 2;
 		}
 	}
