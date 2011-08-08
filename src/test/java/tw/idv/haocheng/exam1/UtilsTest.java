@@ -1,4 +1,4 @@
-package tw.idv.haocheng;
+package tw.idv.haocheng.exam1;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
