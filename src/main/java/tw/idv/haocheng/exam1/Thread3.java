@@ -19,7 +19,8 @@ public class Thread3 implements Runnable {
 		while (true) {
 			int sum = pool.forThread3();
 			seq.add(sum);
-			Double median = Utils.findMedian(seq);
+			Double median = Utils
+					.findMedian(seq.toArray(new Integer[seq.size()]));
 			System.err.println("Thread3 median: " + median);
 		}
 	}

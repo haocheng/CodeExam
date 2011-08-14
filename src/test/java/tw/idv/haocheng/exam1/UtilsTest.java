@@ -1,22 +1,15 @@
 package tw.idv.haocheng.exam1;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 
 import org.junit.Test;
-
-import tw.idv.haocheng.exam1.Pair;
-import tw.idv.haocheng.exam1.Utils;
 
 public class UtilsTest {
 
@@ -29,32 +22,62 @@ public class UtilsTest {
 
 	@Test
 	public void findMedian() {
-		List<Integer> ints = Arrays.asList(1, 3, 5);
+
+		Integer[] ints = new Integer[] { 1, 3, 5 };
 
 		assertEquals(3.0d, Utils.findMedian(ints).doubleValue(), 1e-15);
 
-		List<Integer> ints2 = Arrays.asList(7, 3, 5, 1);
+		Integer[] ints2 = new Integer[] { 7, 2, 3, 4, 9, 1, 5, 3 };
 
-		assertEquals(4.0d, Utils.findMedian(ints2).doubleValue(), 1e-15);
+		assertEquals(3.5d, Utils.findMedian(ints2).doubleValue(), 1e-15);
+
+		Integer[] ints3 = new Integer[] { 7, 2, 3, 4, 9, 1, 5, 3, 10, 12, 5, 8,
+				9, 99, 100, 2 };
+
+		assertEquals(6.0d, Utils.findMedian(ints3).doubleValue(), 1e-15);
 	}
 
 	@Test
 	public void findMedianWithoutSort() {
-		List<Integer> ints = Arrays.asList(1, 3, 5);
+		Integer[] ints = new Integer[] { 1, 3, 5 };
 
-		assertEquals(2.0d, Utils.findMedianWithoutSort(ints).doubleValue(),
-				1e-15);
+		assertEquals(3.0d, Utils.findMedianWithoutSort(ints), 1e-15);
 
-		List<Integer> ints2 = Arrays.asList(7, 2, 3, 4, 9, 1, 5, 3);
+		Integer[] ints2 = new Integer[] { 7, 2, 3, 4, 9, 1, 5, 3 };
 
-		assertEquals(4.0d, Utils.findMedianWithoutSort(ints2).doubleValue(),
-				1e-15);
+		assertEquals(3.5d, Utils.findMedianWithoutSort(ints2), 1e-15);
 
-		List<Integer> ints3 = Arrays.asList(7, 2, 3, 4, 9, 1, 5, 3, 10, 12, 5,
-				8, 9, 99, 100, 2);
+		Integer[] ints3 = new Integer[] { 7, 2, 3, 4, 9, 1, 5, 3, 10, 12, 5, 8,
+				9, 99, 100, 2 };
 
-		assertEquals(4.0d, Utils.findMedianWithoutSort(ints3).doubleValue(),
-				1e-15);
+		assertEquals(6.0d, Utils.findMedianWithoutSort(ints3), 1e-15);
+	}
+
+	@Test
+	public void compareFindMedianAlgorithm() throws Exception {
+		// generating 100000 numbers
+		int max = 100000;
+		Integer[] randoms = new Integer[max];
+		Random random = new Random();
+		for (int i = 0; i < max; i++) {
+			randoms[i] = random.nextInt(10000000);
+		}
+
+		// run find median with sort
+		long start = new Date().getTime();
+		double median = Utils.findMedian(randoms);
+		long end = new Date().getTime();
+
+		System.err.println("median: " + median);
+		System.err.println("time: " + (end - start));
+
+		// run find median without sort
+		start = new Date().getTime();
+		median = Utils.findMedianWithoutSort(randoms);
+		end = new Date().getTime();
+
+		System.err.println("median: " + median);
+		System.err.println("time: " + (end - start));
 	}
 
 	@Test
@@ -113,8 +136,9 @@ public class UtilsTest {
 		for (int i = 0; i < randoms.length; i++) {
 			int num = randoms[i];
 			BigInteger integer = new BigInteger(String.valueOf(num));
-			System.out.println(integer);
-			System.out.println(integer.isProbablePrime(10));
+			// System.out.println(integer);
+			boolean probablePrime = integer.isProbablePrime(10);
+			// System.out.println(probablePrime);
 		}
 		long end = new Date().getTime();
 		System.err.println("BigInteger.isProbablePrime(10) time spent: "
@@ -123,28 +147,29 @@ public class UtilsTest {
 		start = new Date().getTime();
 		for (int i = 0; i < randoms.length; i++) {
 			int num = randoms[i];
-			System.out.println(num);
-			System.out.println(Utils.isPrime(num));
+			// System.out.println(num);
+			boolean isprime = Utils.isPrime(num);
+			// System.out.println(isprime);
 		}
 		end = new Date().getTime();
 		System.err.println("isPrime time spent: " + (end - start));
 
-		start = new Date().getTime();
-		for (int i = 0; i < randoms.length; i++) {
-			int num = randoms[i];
-			System.out.println(num);
-			System.out.println(Utils.isPrime2(num));
-		}
-		end = new Date().getTime();
-		System.err.println("isPrime2 time spent: " + (end - start));
-
-		start = new Date().getTime();
-		for (int i = 0; i < randoms.length; i++) {
-			int num = randoms[i];
-			System.out.println(Utils.isMersennePrime(num));
-		}
-		end = new Date().getTime();
-		System.err.println("isMersennePrime time spent: " + (end - start));
+		// start = new Date().getTime();
+		// for (int i = 0; i < randoms.length; i++) {
+		// int num = randoms[i];
+		// System.out.println(num);
+		// System.out.println(Utils.isPrime2(num));
+		// }
+		// end = new Date().getTime();
+		// System.err.println("isPrime2 time spent: " + (end - start));
+		//
+		// start = new Date().getTime();
+		// for (int i = 0; i < randoms.length; i++) {
+		// int num = randoms[i];
+		// System.out.println(Utils.isMersennePrime(num));
+		// }
+		// end = new Date().getTime();
+		// System.err.println("isMersennePrime time spent: " + (end - start));
 	}
-
+	
 }

@@ -34,10 +34,11 @@ public class Utils {
 		return builder.toString();
 	}
 
-	public static Double findMedian(List<Integer> numbers) {
+	public static Double findMedian(Integer[] ints) {
+		List<Integer> numbers = Arrays.asList(ints);
 		Collections.sort(numbers);
-		System.err
-				.println("all numbers: " + Arrays.toString(numbers.toArray()));
+		// System.err
+		// .println("all numbers: " + Arrays.toString(numbers.toArray()));
 
 		int size = numbers.size();
 
@@ -50,36 +51,34 @@ public class Utils {
 		}
 	}
 
-	public static Integer findMedianWithoutSort(List<Integer> ints) {
-		int medianCandidate = 0;
-		int offset = 1;
+	public static double findMedianWithoutSort(Integer[] ints) {
+		int n = ints.length;
 
-		while (true) {
-			int count = 0;
-			count = loopThrough(ints, medianCandidate, count);
+		if (n % 2 == 0) {
+			int mid = (n + 1) / 2;
+			int mid2 = mid + 1;
+			// System.err.println("Before: " + Arrays.toString(ints));
 
-			int total = count * 2;
-			System.err.println("median candidate: " + medianCandidate);
-			if (total > medianCandidate + offset) {
-				medianCandidate = (total + medianCandidate) / 2;
-			} else if (total < medianCandidate - offset) {
-				medianCandidate = (total + medianCandidate) / 2;
-			} else if (total <= medianCandidate + offset
-					|| total >= medianCandidate - offset) {
-				System.err.println("total: " + total);
-				return total;
-			}
+			QuickSelect.quickSelect(ints, mid);
+
+			// System.err.println("After: " + Arrays.toString(ints));
+			System.err.println(ints[mid - 1]);
+			System.err.println(ints[mid2 - 1]);
+			double median1 = (double) ((Integer) ints[mid - 1]).intValue();
+			double median2 = (double) ((Integer) ints[mid2 - 1]).intValue();
+			return (median1 + median2) / 2;
+		} else {
+			int mid = (n + 1) / 2;
+			// System.err.println("Before: " + Arrays.toString(ints));
+
+			QuickSelect.quickSelect(ints, mid);
+
+			// System.err.println("After: " + Arrays.toString(ints));
+			System.err.println("median: " + ints[mid - 1]);
+
+			return (double) ((Integer) ints[mid - 1]).intValue();
 		}
-	}
 
-	private static int loopThrough(List<Integer> ints, int medianCandidate,
-			int count) {
-		for (Integer int1 : ints) {
-			if (int1.intValue() > medianCandidate) {
-				count++;
-			}
-		}
-		return count;
 	}
 
 	public static boolean isMersennePrime(int n) {
