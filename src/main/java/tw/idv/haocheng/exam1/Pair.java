@@ -11,7 +11,7 @@ public class Pair {
 		this.t2 = t2.intValue();
 	}
 
-	int getSum() {
+	public int getSum() {
 		return t1 + t2;
 	}
 

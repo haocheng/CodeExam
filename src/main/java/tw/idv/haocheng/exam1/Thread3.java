@@ -3,6 +3,8 @@ package tw.idv.haocheng.exam1;
 import java.util.ArrayList;
 import java.util.List;
 
+import tw.idv.haocheng.exam1.utils.Utils;
+
 public class Thread3 implements Runnable {
 
 	private final List<Integer> seq;

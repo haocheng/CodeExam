@@ -1,5 +1,7 @@
 package tw.idv.haocheng.exam1;
 
+import tw.idv.haocheng.exam1.utils.Utils;
+
 public class Thread4 implements Runnable {
 
 	private final NumberPool pool;

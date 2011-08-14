@@ -1,10 +1,12 @@
-package tw.idv.haocheng.exam1;
+package tw.idv.haocheng.exam1.utils;
 
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
 
 import org.junit.Test;
+
+import tw.idv.haocheng.exam1.utils.QuickSelect;
 
 public class QuickSelectTest {
 

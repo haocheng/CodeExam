@@ -1,4 +1,4 @@
-package tw.idv.haocheng.exam1;
+package tw.idv.haocheng.exam1.utils;
 
 /**
  * 

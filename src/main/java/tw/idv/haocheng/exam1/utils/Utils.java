@@ -1,8 +1,10 @@
-package tw.idv.haocheng.exam1;
+package tw.idv.haocheng.exam1.utils;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import tw.idv.haocheng.exam1.Pair;
 
 public class Utils {
 

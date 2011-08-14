@@ -1,4 +1,4 @@
-package tw.idv.haocheng.exam1;
+package tw.idv.haocheng.exam1.utils;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,6 +10,9 @@ import java.util.Date;
 import java.util.Random;
 
 import org.junit.Test;
+
+import tw.idv.haocheng.exam1.Pair;
+import tw.idv.haocheng.exam1.utils.Utils;
 
 public class UtilsTest {
 

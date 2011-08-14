@@ -3,6 +3,8 @@ package tw.idv.haocheng.exam1;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import tw.idv.haocheng.exam1.utils.Utils;
+
 public class Thread2 implements Runnable {
 
 	private final NumberPool pool;
